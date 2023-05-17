@@ -28,7 +28,7 @@ Where we need to recognise categories of PID entities for specific reasons:
 
 - **Replace personal information in source data for machine learning to reduce unfairness** – For example, if we want to remove names that might reveal gender when training a machine learning model, we use the service to identify them and replace them with generic placeholders for model training.
 
-Considerations when choosing a use case
+## Considerations when choosing a use case
 ### We do not use
 
 - **PID only**  - We do not use for automatic redaction or information classification scenarios – Any scenario where failures to redact personal information could expose individuals to the risk of identity theft and physical or psychological harms must include meaningful human review.
