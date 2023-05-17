@@ -1,5 +1,7 @@
 # What is a transparency card?
-An AI system includes not only the technology, but also the people who will use it, the people who will be affected by it, and the environment in which it is deployed. Creating a system that is fit for purpose requires an understanding of how the technology works, its capabilities and limitations, and how to achieve the best performance. Advanced Analytica's Transparency Cards are intended to help indviduals understand how AI technology works, the choices AI system owners make that influence system performance and behaviour, and the importance of thinking about the system as a whole, including the technology, the people, the environment and the law. We help our client draft Transparency Cards when developing, deploying and operating their AI systems, so they can be shared with the people who will use or be affected by their AI systems.
+An AI system includes not only the technology, but also the people who will use it, the people who will be affected by it, and the environment in which it is deployed. Creating a system that is fit for purpose requires an understanding of how the technology works, its capabilities and limitations, and how to achieve the best performance. Advanced Analytica's Transparency Cards are intended to help indviduals understand how AI technology works, the choices AI system owners make that influence system performance and behaviour, and the importance of thinking about the system as a whole, including the technology, the people, the environment and the law. 
+
+We help our client draft Transparency Cards when developing, deploying and operating their AI systems, so they can be shared with the people who will use or be affected by their AI systems.
 
 Advanced Analytica's Transparency Cards are part of a broader effort for AI Governance to put the ICO's AI principles into practice. To find out more, see the AI Governance Hub.
 
@@ -8,38 +10,48 @@ Natural Langauge Processing frameworks support named entity recognition to ident
 
 Read example NER request and example response to see how to send text to the service and what to expect back.
 
-## Example use cases
-Customers may want to recognize various categories of named entities two main reasons:
+## Use cases
 
-Enhance search capabilities - Customers can build knowledge graphs based on entities detected in documents to enhance document search.
-Enhance or automate business processes - For example, when reviewing insurance claims, recognized entities like name and location could be highlighted to facilitate the review. Or a support ticket could be generated with a customer's name and company automatically from an email.
-Customers may want to recognize various categories of PII entities specifically for several reasons:
+Where we need to recognise categories of named entities:
 
-- Apply sensitivity labels - For example, based on the results from the PII service, a public sensitivity label might be applied to documents where no PII entities are detected. For documents where US addresses and phone numbers are recognized, a confidential label might be applied. A highly confidential label might be used for documents where bank routing numbers are recognized.
-- Redact some categories of personal information from documents to protect privacy - For example, if customer contact records are accessible to first line support representatives, the company may want to redact unnecessary customer's personal information from customer history to preserve the customer's privacy.
-- Redact personal information in order to reduce unconscious bias - For example, during a company's resume review process, they may want to block name, address and phone number to help reduce unconscious gender or other biases.
-- Replace personal information in source data for machine learning to reduce unfairness – For example, if you want to remove names that might reveal gender when training a machine learning model, you could use the service to identify them and you could replace them with generic placeholders for model training.
+- **Enhance search capabilities** - Building knowledge graphs based on entities detected in documents to enhance document search.
+
+- **Enhance or automate business processes** - For example, when reviewing insurance claims, recognized entities like name and location could be highlighted to facilitate the review. Or a support ticket could be generated with a customer's name and company automatically from an email.
+
+Where we need to recognise categories of PID entities for specific reasons:
+
+- **Apply sensitivity labels** - Based on the results from the PID service, a public sensitivity label must/should/could be applied to documents where no PID entities are detected. For documents where UK addresses and phone numbers are recognised, a confidential label must/should/could be applied. A highly confidential label might be used for documents where bank account numbers are recognised.
+
+- **Redact some categories of personal information from documents to protect privacy** - Where customer contact records are accessible to first line support representatives, the company must/should/could redact unnecessary customer's personal information from customer history to preserve the customer's privacy.
+
+- **Redact personal information in order to reduce unconscious bias** - For example, during a company's resume review process, they may want to block name, address and phone number to help reduce unconscious gender or other biases.
+
+- **Replace personal information in source data for machine learning to reduce unfairness** – For example, if we want to remove names that might reveal gender when training a machine learning model, we use the service to identify them and replace them with generic placeholders for model training.
 
 Considerations when choosing a use case
-Do not use
+### We do not use
 
-PII only - Do not use for automatic redaction or information classification scenarios – Any scenario where failures to redact personal information could expose people to the risk of identity theft and physical or psychological harms should include careful human oversight.
-NER and PII - Do not use for scenarios that use personal information for a purpose that consent was not obtained for - For example, a company has resumes from past job applicants. The applicants did not give their consent to be contacted for promotional events when they submitted their resumes. Based on this scenario, both NER and PII services should not be used to identify contact information for the purpose of inviting the past applicants to a trade show.
-NER and PII - Customers are prohibited from using of this service to harvest personal information from publicly available content without consent from person(s) whom are the subject of the personal information.
-NER and PII - Do not use for scenarios that replace personal information in text with the intent to mislead people.
+- **PID only**  - We do not use for automatic redaction or information classification scenarios – Any scenario where failures to redact personal information could expose individuals to the risk of identity theft and physical or psychological harms must include meaningful human review.
+
+- **NER and PII**  - Do not use for scenarios that use personal information for a purpose that consent was not obtained for - For example, a company has resumes from past job applicants. The applicants did not give their consent to be contacted for promotional events when they submitted their resumes. Based on this scenario, both NER and PII services should not be used to identify contact information for the purpose of inviting the past applicants to a trade show.
+
+- **NER and PII**  - Customers are prohibited from using of this service to harvest personal information from publicly available content without consent from person(s) whom are the subject of the personal information.
+
+- **NER and PII**  - Do not use for scenarios that replace personal information in text with the intent to mislead people.
 Characteristics and limitations
-Depending on your scenario, input data and the entities you wish to extract, you could experience different levels of performance. The following sections are designed to help you understand key concepts about performance as they apply to using the Azure Cognitive Service for language NER and PII services.
 
-Understand and measure performance of NER
-Since both false positive and false negative errors can occur, it is important to understand how both types of errors might affect your overall system. With Named Entity Recognition (NER), a false positive occurs when an entity is not present in the text, but is recognized and returned by the system. A false negative is when an entity is present in the text, but is not recognized and returned by the system.
+Depending on each scenario, input data and the entities we need extract can experience different levels of performance. The following sections are designed to help you understand key concepts about performance as they apply to using the Azure Cognitive Service for language NER and PII services.
 
-Understanding performance for PII
-In redaction scenarios, for example, false negatives could lead to personal information leakage. For redaction scenarios, consider a process for human review to account for this type of error. For sensitivity label scenarios, both false positives and false negatives could lead to misclassification of documents. The audience may unnecessarily limited for documents labelled as confidential where a false positive occurred. PII could be leaked where a false negative occurred and a public label was applied.
+## Understanding and measuring performance of NER
+Since both false positive and false negative errors can occur, it is important to understand how both types of errors might affect our overall system. With Named Entity Recognition (NER), a false positive occurs when an entity is not present in the text, but is recognised and returned by the system. A false negative is when an entity is present in the text, but is not recognised and returned by the system.
 
-You can adjust the threshold for confidence score your system uses to tune your system. If it is more important to identify all potential instances of PII, you can use a lower threshold. This means that you may get more false positives (non- PII data being recognized as PII entities), but fewer false negatives (PII entities not recognized as PII). If it is more important for your system to recognize only true PII data, you can use a higher threshold. Threshold values may not have consistent behavior across individual categories of PII entities. Therefore, it is critical that you test your system with real data it will process in production.
+## Understanding performance for PID
+In redaction scenarios, for example, false negatives could lead to personal information leakage. For redaction scenarios, we consider a process for human review to account for this type of error. For sensitivity label scenarios, both false positives and false negatives could lead to misclassification of documents. The audience may be unnecessarily limited for documents labelled as confidential where a false positive occurred. PID could be leaked where a false negative occurred and a public label is applied.
 
-System limitations and best practices for enhancing performance
-Make sure you understand all the entity categories for NER and PII that can be recognized by the system. Depending on your scenario, your data may include other information that could be considered personal but is not covered by the categories the service currently supports.
+We adjust the threshold for confidence score our system uses to tune the system. When it is more important to identify all potential instances of PID, we use a lower threshold. This means that you may get more false positives (non- PII data being recognized as PII entities), but fewer false negatives (PII entities not recognized as PII). If it is more important for your system to recognize only true PII data, you can use a higher threshold. Threshold values may not have consistent behavior across individual categories of PII entities. Therefore, it is critical that you test your system with real data it will process in production.
+
+## System limitations and best practices for enhancing performance
+We make sure we understand all the entity categories for NER and PID that can be recognised by the system. Depending on each scenario, or data may include other information that could be considered personal but is not covered by the categories the service currently supports.
 
 Context is important for all entity categories to be correctly recognized by the system, as it often is for humans to recognize an entity. For example, without context a ten-digit number is just a number. However, given context like "You can reach me at my office phone number 2345678901," both the system and a human can recognize the ten-digit number as a phone number. Always include context when sending text to the system to obtain the best possible performance.
 
